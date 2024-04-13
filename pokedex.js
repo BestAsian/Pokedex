@@ -1,60 +1,76 @@
-
-
-const pokemonCount = 300;
-var pokedex = {};
-
-window.onload = async function() {
-    for (let i = 1; i <= pokemonCount; i++) {
-        await getPokemon(i);
-        let pokemon = document.createElement("div");
-        pokemon.id = i;
-        pokemon.innerText = i.toString() + ". " + pokedex[i]["name"].toUpperCase();
-        pokemon.classList.add("pokemon-name");
-        pokemon.addEventListener("click", updatePokemon);
-        document.getElementById("pokemon-list").append(pokemon);
-    }
-
-    document.getElementById("pokemon-description").innerText = pokedex[1]["desc"];
-
-    console.log(pokedex);
+async function searchPoke(term) { 
+        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${term}`);
+        const json = await response.json();
+        printPokemon(json);
 }
 
-async function getPokemon(num) {
-    let url = "https://pokeapi.co/api/v2/pokemon/" + num.toString();
+function printPokemon(json) {
+    document.getElementById("pokemonImg").src = json.sprites.front_default;
+    document.getElementById("pokemonName").textContent = json.name;
+    document.getElementById("pokemonHP").textContent = `HP ${json.stats[0].base_stat}`;
+    document.getElementById("pokemonType").textContent = json.types.map(type => type.type.name).join(" / ");
+    document.getElementById("pokemonWeight").textContent = `${json.weight / 10}kg`;
+    document.getElementById("pokemonHeight").textContent = `${json.height / 10}m`;
 
-    let res = await fetch(url);
-    let pokemon = await res.json();
-
-    let pokemonName = pokemon["name"];
-    let pokemonType = pokemon["types"];
-    let pokemonImg = pokemon["sprites"]["front_default"];
-
-    res = await fetch(pokemon["species"]["url"]);
-    let pokemonDesc = await res.json();
-
-    // console.log(pokemonDesc);
-    pokemonDesc = pokemonDesc["flavor_text_entries"][9]["flavor_text"];
-
-    pokedex[num] = {"name" : pokemonName, "img" : pokemonImg, "types" : pokemonType, "desc" : pokemonDesc};
-
+    document.getElementById("pokemonDetails").style.display = "block";
 }
 
-function updatePokemon(){
-    document.getElementById("pokemon-img").src = pokedex[this.id]["img"];
+async function searchItem(term) {
+        const response = await fetch(`https://pokeapi.co/api/v2/item/${term}`);
+        const item = await response.json();
+        printItem(item);
+}
 
-    let typesDiv = document.getElementById("pokemon-types");
-    while (typesDiv.firstChild) {
-        typesDiv.firstChild.remove();
-    }
+function printItem(item) {
+    document.getElementById("itemImg").src = item.sprites.default;
+    document.getElementById("itemName").textContent = item.name;
+    document.getElementById("itemCategory").textContent = item.category.name;
+    document.getElementById("itemCost").textContent = item.cost;
 
-    let types = pokedex[this.id]["types"];
-    for (let i = 0; i < types.length; i++) {
-        let type = document.createElement("span");
-        type.innerText = types[i]["type"]["name"].toUpperCase();
-        type.classList.add("type-box");
-        type.classList.add(types[i]["type"]["name"]); 
-        typesDiv.append(type);
-    }
-    
-    document.getElementById("pokemon-description").innerText = pokedex[this.id]["desc"];
+    document.getElementById("itemDetails").style.display = "block";
+}
+
+async function searchMove(term) {
+    const response = await fetch(`https://pokeapi.co/api/v2/move/${term}`);
+        const move = await response.json();
+        printMove(move);
+}
+
+function printMove(move) {
+    document.getElementById("moveName").textContent = move.name;
+    document.getElementById("movePower").textContent = move.power;
+    document.getElementById("movePP").textContent = move.pp;
+    document.getElementById("movePriority").textContent = move.priority;
+    document.getElementById("moveAccuracy").textContent = move.accuracy;
+    document.getElementById("moveClass").textContent = move.damage_class.name;
+
+    document.getElementById("moveDetails").style.display = "block";
+}
+
+
+function showMenu() {
+    // Don't need this
+}
+
+function run(){
+    // Don't need this
+}
+
+if (window.location.pathname.includes("item.html")) {
+    document.getElementById("itemsearchBtn").addEventListener("click", function() {
+        const searchTerm = document.getElementById("searchInput").value;
+        searchItem(searchTerm);
+    });
+} 
+else if (window.location.pathname.includes("move.html")) {
+    document.getElementById("movesearchBtn").addEventListener("click", function() {
+        const searchTerm = document.getElementById("searchInput").value;
+        searchMove(searchTerm);
+    });
+} 
+else {
+    document.getElementById("pokeSearchBtn").addEventListener("click", function() {
+        const searchTerm = document.getElementById("searchInput").value;
+        searchPoke(searchTerm);
+    });
 }
