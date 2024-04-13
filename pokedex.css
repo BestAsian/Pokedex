@@ -1,28 +1,19 @@
 body {
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-#content-box{
-    width: 500px;
-    height: 500px;
-    border: 10px solid lightgray;
-    border-radius: 10px;
-
-    background-color: green;
-    display: flex;
-    margin: 0 auto;
-    margin-top: 60px;
-
-}
-
-#pokemon-info {
-    width: 250px;
-    height: 500px;
-    background-color: cyan;
-}
-
-#pokemon-list {
-    width: 250px;
-    height: 500px;
+    font-family: Arial, sans-serif;
     background-color: yellow;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+.search-container {
+    display: flex;
+    margin: 10px;
+    width: 80%;
 }
