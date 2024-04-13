@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movedex</title>
+    <link rel="stylesheet" href="pokedex.css">
+</head>
+<body>
+    <h2>Movedex</h2>
+    <div>
+        <input type="text" id="searchInput" placeholder="Search Move by name">
+        <button id="movesearchBtn">Search</button>
+    </div>
+    <div id="moveDetails" style="display: none;">
+        <h3 id="moveName"></h3>
+        <div>
+            <small>Power</small>
+            <p id="movePower"></p>
+        </div>
+        <div>
+            <small>PP</small>
+            <p id="movePP"></p>
+        </div>
+        <div>
+            <small>Priority</small>
+            <p id="movePriority"></p>
+        </div>
+        <div>
+            <small>Accuracy</small>
+            <p id="moveAccuracy"></p>
+        </div>
+        <div>
+            <small>Damage Class</small>
+            <p id="moveClass"></p>
+        </div>
+    </div>
+
+    <script src="pokedex.js"></script>
+</body>
+</html>

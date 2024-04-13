@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Itemdex</title>
+    <link rel="stylesheet" href="pokedex.css">
+</head>
+<body>
+    <h2>Itemdex</h2>
+    <div>
+        <input type="text" id="searchInput" placeholder="Search Item by name">
+        <button id="itemsearchBtn">Search</button>
+    </div>
+    <div id="itemDetails" style="display: none;">
+        <div>
+            <img id="itemImg">
+        </div>
+        <div>
+            <h3 id="itemName"></h3>
+            <hr>
+            <div>
+                <small>Category</small>
+                <p id="itemCategory"></p>
+            </div>
+            <div>
+                <small>Cost</small>
+                <p id="itemCost"></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="pokedex.js"></script>
+</body>
+</html>
