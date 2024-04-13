@@ -1,27 +1,43 @@
 <!DOCTYPE html>
-<!--
-    Code adapted from Kenny Yip
--->
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name ="viewport" content="width-device-width, initial-scale=1.0">
-        <title>Pokedex</title>
-
-        <link rel="stylesheet" href="pokedex.css">
-        <script src="pokedex.js"></script>
-    </head>
-
-    <body>
-        <div id="content-box">
-            <div id="pokemon-info">
-                <img id="pokemon-img">
-                <div id="pokemon-types">
-                    <span class="type-box grass">GRASS</span><SPAN class="type-box poison">POISON</SPAN>
-                </div>
-                </div id="pokemon-description"></div>
-            </div>
-            <div id="pokemon-list"></div>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokemon Codex</title>
+    <link rel="stylesheet" href="pokedex.css">
+</head>
+<body>
+    <h2>PokeDex</h2>
+    <div>
+        <input type="text" id="searchInput" placeholder="Search Pokemon by name">
+        <button id="pokeSearchBtn">Search</button>
+    </div>
+    <div id="pokemonDetails" style="display: none;">
+        <div>
+            <img id="pokemonImg">
         </div>
-    </body>
+        <div>
+            <h3 id="pokemonName"></h3>
+            <hr>
+            <div>
+                <small>Health</small>
+                <span id="pokemonHP"></span>
+            </div>
+            <div>
+                <small>Type</small>
+                <p id="pokemonType"></p>
+            </div>
+            <div>
+                <small>Weight</small>
+                <p id="pokemonWeight"></p>
+            </div>
+            <div>
+                <small>Height</small>
+                <p id="pokemonHeight"></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="pokedex.js"></script>
+</body>
 </html>
